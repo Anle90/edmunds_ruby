@@ -27,8 +27,8 @@ module Edmunds
 
     def call_api
       @base_url = @base + @url + @format
-      @resp = RestClient.get(@base_url)
-      @json = JSON.parse(@resp)
+      @resp = RestClient.get(@base_url){ |response, request, results| results}
+      @json = JSON.parse(@resp.body)
     end
 
   end
